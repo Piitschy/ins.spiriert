@@ -16,7 +16,7 @@ jobs:
           FTP_SERVER: ${{ secrets.SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./html/
+          LOCAL_DIR: ./
           REMOTE_DIR: ${{ secrets.DOCKER_VOL_PATH }}/${{ secrets.DOCKER_STACK }}_lap/_data/
           METHOD: sftp
           PORT: ${{ secrets.PORT }}
