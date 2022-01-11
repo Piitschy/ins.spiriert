@@ -1,0 +1,22 @@
+
+on:
+  release:
+    types: [created]
+
+name: deploy on release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: SFTP-Deploy frontend
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./html/
+          REMOTE_DIR: ${{ secrets.DOCKER_VOL_PATH }}/${{ secrets.DOCKER_STACK }}_lap/_data/
+          METHOD: sftp
+          PORT: ${{ secrets.PORT }}
