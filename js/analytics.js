@@ -31,7 +31,7 @@ window.cookieconsent.initialise({
     "dismiss": "Nope",
     "allow": "Cool",
     "link": "Rezept. (Datenschutzerklärung)",
-    "href": "https://ins.spiriert.de/datenschutz"
+    "href": "./datenschutz.html"
   },
     onStatusChange: function(status, chosenBefore) {
     var type = this.options.type;
