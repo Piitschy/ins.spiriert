@@ -651,6 +651,51 @@ strong {
   background-color: hsla(0, 0%, 40%, 0.47);
 }
 
+.my-event {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 2px;
+  background-color: #1867c0;
+  color: #ffffff;
+  border: 1px solid #1867c0;
+  font-size: 12px;
+  padding: 3px;
+  cursor: pointer;
+  margin-bottom: 1px;
+  left: 4px;
+  margin-right: 8px;
+  position: relative;
+}
+.my-event.with-time {
+  position: absolute;
+  right: 1px;
+  margin-right: 0px;
+}
+
+.iconwrapper:hover::before {
+  content: "r";
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 6px;
+ 	transform: translateY(-40px);
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+.bottle:hover::before{
+	content:"Getränke";
+}
+.wifi:hover::before{
+	content:"Internet";
+}
+.charger:hover::before{
+	content:"Steckdosen";
+}
+
 .html-embed-2 {
   height: 800px;
 }
