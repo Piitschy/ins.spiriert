@@ -1,10 +1,11 @@
 import { createApp } from 'https://unpkg.com/petite-vue?module'
 
 createApp({
-  // data
+  // const
   url:'https://cms.spiriert.de/',
+  // data
   data: {
-    items: []
+    descriptions: []
   },
   // methods
   load(route,target) {
@@ -13,6 +14,6 @@ createApp({
       .then(data => this.data[target] = data)
   },
   mounted() {
-    this.load('texts','items')
+    this.load('texts','descriptions')
   }
 }).mount()
