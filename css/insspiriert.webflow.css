@@ -688,27 +688,6 @@ strong {
   height: 800px;
 }
 
-.div-block-4 {
-  position: absolute;
-  left: 70px;
-  top: 48%;
-  z-index: 2;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0px;
-  padding: 5px 16px 5px 15px;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 20px;
-  background-color: hsla(0, 0%, 40.1%, 0.52);
-  color: rgba(0, 0, 0, 0.66);
-  cursor: pointer;
-}
-
 @media screen and (max-width: 991px) {
   .footer {
     padding-right: 20px;
@@ -855,10 +834,6 @@ strong {
 
   .cal_frame {
     white-space: normal;
-  }
-
-  .div-block-4 {
-    left: 27px;
   }
 }
 
