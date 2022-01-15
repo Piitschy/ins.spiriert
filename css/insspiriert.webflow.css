@@ -155,10 +155,8 @@ strong {
   text-decoration: none;
 }
 
-.oeffung {
+.link-boxes {
   position: absolute;
-  left: 158px;
-  top: 35%;
   z-index: 2;
   border: 1px none #000;
   border-radius: 20px;
@@ -641,16 +639,6 @@ strong {
   object-fit: fill;
 }
 
-.booking {
-  position: absolute;
-  left: 118px;
-  top: 41%;
-  z-index: 2;
-  border: 1px none #000;
-  border-radius: 20px;
-  background-color: hsla(0, 0%, 40%, 0.47);
-}
-
 .my-event {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -818,7 +806,7 @@ strong {
     left: 27px;
   }
 
-  .oeffung {
+  .link-boxes{
     left: 32px;
   }
 
@@ -867,10 +855,6 @@ strong {
 
   .cal_frame {
     white-space: normal;
-  }
-
-  .booking {
-    left: 32px;
   }
 
   .div-block-4 {
