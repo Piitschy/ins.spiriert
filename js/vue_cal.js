@@ -150,7 +150,7 @@ var cal = new Vue({
   methods: {
     date2sting(key,time_only=false){
       const dateTime = new Date(key.dateTime || key.date)
-      dateTime.setHours(dateTime.getHours() + 2)
+      dateTime.setHours(dateTime.getHours() + 1)
       dateTimeStr = dateTime.toISOString()
       const tag = dateTimeStr.substr(0, 10)
       const zeit = dateTimeStr.substr(11, 5)
