@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/insspiriert.webflow.css?v4" rel="stylesheet" type="text/css">
+  <link href="css/insspiriert.webflow.css?v5" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -96,19 +96,12 @@
   </div>
   -->
   <div class="spacer"></div>
-  <div> 
-    <section class="textfeld">
-      <h1 class="heading-8">Raumbuchung</h1>
-      <p class="paragraph-2">Einzelplätze im Co-Working-Space sind für alle OHNE ANMELDUNG zugänglich.<br>Wenn Du jedoch einen eigenen Raum für dich und deine Gruppe nutzen möchtest, kannst du diesen hier reservieren.</p>
-      <a href="https://spiriert.skedda.com/" target="_blank" class="link-3">Zur Vollbildansicht</a>
-    </section>
-    <div class="spacer"></div>
-  </div>
   <div v-for="item of data.sections" :key="item">
     <section class="textfeld">
       <h1 class="heading-8">{{ item.headline }}</h1>
       <p class="paragraph-2">{{ item.text }}</p>
-    </section>admin/settings/users-permissions/roles/2
+      <a v-if="item.show_link" :href="item.url" target="_blank" class="link-3">{{ item.link_text }}</a>
+    </section>
     <div class="spacer"></div>
   </div>
 
