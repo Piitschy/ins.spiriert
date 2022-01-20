@@ -68,6 +68,7 @@ var cal = new Vue({
               color="#202020"
               :events="events"
               :type="type"
+              :weekdays="weekday"
               @click:event="showEvent"
               @click:more="viewDay"
               @click:date="viewDay"
@@ -120,6 +121,7 @@ var cal = new Vue({
         week: 'Woche',
         day: 'Tag'
       },
+      weekday: [1, 2, 3, 4, 5, 6, 0],
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
