@@ -6,11 +6,11 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/insspiriert.webflow.css?v3" rel="stylesheet" type="text/css">
+  <link href="css/insspiriert.webflow.css?v4" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-  <script src="js/vue_cms.js?v3" type="module"></script>
+  <script src="js/vue_cms.js?v4" type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Cairo:300,regular,600"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -58,7 +58,7 @@
           role="listitem" 
           class="collection-item w-dyn-item w-col w-col-4"
           >
-            <h2 class="heading-5">{{ item.title }}</h2>
+            <h2 class="heading-5">{{ item.headline }}</h2>
             <div class="text-block-4">{{ item.text }}</div>
         </div>
       </div>
@@ -95,13 +95,25 @@
     </div>
   </div>
   -->
-  <div class="spacer"></div>  
-  <section id="booking" class="textfeld">
-    <h1 class="heading-8">Raumbuchung</h1>
-    <p class="paragraph-2">Einzelplätze im Co-Working-Space sind für alle OHNE ANMELDUNG zugänglich.<br>Wenn Du jedoch einen eigenen Raum für dich und deine Gruppe nutzen möchtest, kannst du diesen hier reservieren.</p>
-    <a href="https://spiriert.skedda.com/" target="_blank" class="link-3">Zur Vollbildansicht</a>
-    <div class="html-embed-2 w-embed w-iframe"><iframe src="https://spiriert.skedda.com/booking?embedded=true" style="width: 100%; height: 800px;"></iframe></div>
-  </section>
+  <div class="spacer"></div>
+  <div> 
+    <section class="textfeld">
+      <h1 class="heading-8">Raumbuchung</h1>
+      <p class="paragraph-2">Einzelplätze im Co-Working-Space sind für alle OHNE ANMELDUNG zugänglich.<br>Wenn Du jedoch einen eigenen Raum für dich und deine Gruppe nutzen möchtest, kannst du diesen hier reservieren.</p>
+      <a href="https://spiriert.skedda.com/" target="_blank" class="link-3">Zur Vollbildansicht</a>
+    </section>
+    <div class="spacer"></div>
+  </div>
+  <div v-for="item of data.sections" :key="item">
+    <section class="textfeld">
+      <h1 class="heading-8">{{ item.headline }}</h1>
+      <p class="paragraph-2">{{ item.text }}</p>
+    </section>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- <div class="html-embed-2 w-embed w-iframe"><iframe src="https://spiriert.skedda.com/booking?embedded=true" style="width: 100%; height: 800px;"></iframe></div> -->
+
   <div class="spacer">
     <a href="impressum.html" class="link-2">Impressum</a>
     <a href="datenschutz.html" class="link-2">Datenschutz</a>

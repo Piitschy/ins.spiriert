@@ -483,10 +483,12 @@ strong {
   object-fit: fill;
 }
 
+
+
 .link-3 {
   display: block;
   margin-top: 8px;
-  margin-bottom: 7px;
+  margin-bottom: 0px;
   margin-left: 0px;
   font-family: Cairo, sans-serif;
   color: #c5d1f7;
