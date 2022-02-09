@@ -15,7 +15,7 @@ print(CODES)
 
 @app.route("/")
 def root():
-    return redirect("https://google.com")
+    return redirect("https://ins.spiriert.com")
 
 @app.route("/<code>")
 def redirect_qr(code):
