@@ -36,12 +36,6 @@ def update():
     return ('', 204)
 
 
-@app.route("/users")
-def update():
-    for item in requests.get(URL+"/items/qrcodes",headers=headers).json()["data"]:
-        CODES[item.code] = item.id
-    return ('', 204)
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=5000)
