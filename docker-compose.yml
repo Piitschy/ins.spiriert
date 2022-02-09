@@ -85,6 +85,8 @@ services:
       
   flask:
     image: python:3.10-alpine
+    ports:
+      - '7450:80'
     volumes:
       - flask:/code
     working_dir: /code
