@@ -22,7 +22,7 @@ services:
     restart: always
     image: directus/directus:latest
     ports:
-      - '7455:8055'
+      - '${PORTBASE}55:8055'
     volumes:
       - uploads:/directus/uploads
     networks:
@@ -72,16 +72,23 @@ services:
     image: fauria/lap:latest
     restart: always
     ports:
-      - '7480:80'
+      - '${PORTBASE}80:80'
     volumes:
       - lap:/var/www/html
   demo:
     image: fauria/lap:latest
     restart: always
     ports:
-      - '7481:80'
+      - '${PORTBASE}81:80'
     volumes:
       - demo:/var/www/html
+      
+  flask:
+    build: ./flask
+    ports:
+        - "${PORTBASE}50:5000"
+    volumes:
+        - flask:/code
 
 
 networks:
@@ -92,3 +99,4 @@ volumes:
   db:
   lap:
   demo:
+  flask:
