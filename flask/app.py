@@ -1,9 +1,9 @@
 from flask import Flask,redirect
-from redis import Redis
+#from redis import Redis
 import requests
 
 app = Flask(__name__)
-redis = Redis(host='redis', port=6379)
+#redis = Redis(host='redis', port=6379)
 
 URL = "https://api.spiriert.de/"
 CODES = {}
@@ -32,17 +32,10 @@ def redirect_qr(code):
 @app.route("/update")
 def update():
     for item in requests.get(URL+"/items/qrcodes",headers=headers).json()["data"]:
-        CODES[item.code] = item.id
+        CODES[item["Code"]] = item["id"]
     return ('', 204)
 
 
-@app.route("/users")
-def update():
-    for item in requests.get(URL+"/items/qrcodes",headers=headers).json()["data"]:
-        CODES[item.code] = item.id
-    return ('', 204)
-
-app.run(host="0.0.0.0",port=4321)
 
 
 

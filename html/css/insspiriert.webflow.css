@@ -839,3 +839,71 @@ strong {
   }
 }
 
+
+.status{
+  position: absolute;
+  top: 30%;
+  left: 10vw;
+  right: 10vw;
+  margin: auto;
+  z-index:500;
+  color:white;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  max-width: 400px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count{
+  position:relative;
+  height: auto;
+  width: 80px;
+}
+.count>.icon{
+  position:absolute;
+  right:0px;
+  top:0px;
+  margin: 0 !important;
+  
+}
+
+[v-cloak] {
+  display:none;
+}
+
+.traffic{
+  margin-top: 30px;
+}
+
+.stat-inner{
+
+  font-size: 30px;
+  font-weight: bolder;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.count>.indicator{
+  line-height: 40px;
+}
+.count>.max{
+  margin-left: -5px;
+}
+.count>span{
+  margin: 0;
+  
+}
+
+@media screen and (min-width: 867px) {
+  .status{
+    top:35px;
+    right: 10px;
+    justify-content: space-between;
+    width: 290px;
+    margin-right: 20px;
+  }
+}

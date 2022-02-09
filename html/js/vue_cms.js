@@ -7,6 +7,7 @@ createApp({
     'linkboxes',
     'texts',
     'sections',
+    'workload',
   ],
 
   // data
@@ -14,7 +15,6 @@ createApp({
 
   // methods
   load(route) {
-    this.data[route] = []
     fetch(this.url+'/'+route)
       .then(response => response.json())
       .then(data => this.data[route] = data)
@@ -22,7 +22,9 @@ createApp({
 
   mounted() {
     for (let r of this.routes) {
+      this.data[r] = []
       this.load(r)
     }
+    setInterval(()=>{this.load('workload')},1000);
   }
 }).mount()

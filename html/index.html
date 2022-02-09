@@ -41,11 +41,28 @@
       <div class="titlebgwrapper"><img src="images/Group-6.svg" loading="lazy" alt="" class="image-4"></div>
     </div>
     <div v-for="item of data.linkboxes.data" :key="item">
-      <div class="link-boxes" :style="'left: calc(200px - '+item.id+'*40px);top: calc(35% + '+item.id+'*5%);'">
+      <div class="link-boxes" :style="'left: calc(20px - '+item.id+'*0px);top: max(55% + '+item.id+'*5%, 55% + '+item.id+'*60px);'">
         <a :href="item.URL" :target="item.blank ? '_blank' : ''" class="link">
           <span class="material-icons-outlined" style="margin-right:5px">{{item.icon}}</span>
            {{ item.text }}
         </a>
+      </div>
+    </div>
+    <div class="status" v-if="data.workload.data" v-cloak>
+      
+      <div class="state">
+        jetzt
+        <div class="stat-inner" v-if="data.workload.data.open" id="open">Geöffnet <div class="icon material-icons-outlined" style="margin-left:5px;font-size:30px;">check_circle</div>  </div>
+        <div class="stat-inner" v-if="!data.workload.data.open" id="close">Geschlossen <div class="icon material-icons-outlined" style="margin-left:5px;font-size:30px;">highlight_off</div>  </div>
+      </div>
+      <div class="traffic" v-if="data.workload.data.open" style="padding: 17px;border-radius: 15px; box-shadow:2px 2px 12px rgba(77, 77, 77, 0.1); background: rgba(37, 37, 37, 0.3);backdrop-filter: blur(4px);">
+      
+        <div class="count"  > 
+          <span class="indicator" style="font-size: 50px;">{{("00"+(data.workload.data.count||0)).slice(("00"+(data.workload.data.count||0)).length-2) }}</span>
+          <span class="max" >/20</span> 
+          <div class="icon material-icons-outlined" style="">group</div>
+        </div>
+        <div class="title">Tische Belegt</div>
       </div>
     </div>
     <div class="start"></div>
@@ -53,7 +70,7 @@
   </div>
   <div class="textfeld">
     <div class="collection-list-wrapper w-dyn-list">
-      <div role="list" class="w-dyn-items w-row">
+      <div role="list" class="w-dyn-items w-row" v-cloak v-if="data.texts.data.length > 0">
         <div 
           v-for="item of data.texts.data" 
           :key="item" 
