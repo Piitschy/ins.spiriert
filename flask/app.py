@@ -42,10 +42,6 @@ def update():
         CODES[item.code] = item.id
     return ('', 204)
 
-app.run(host="0.0.0.0",port=4321)
-
-
-
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0",port=5000)
