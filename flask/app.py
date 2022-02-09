@@ -8,7 +8,7 @@ redis = Redis(host='redis', port=6379)
 URL = "https://api.spiriert.de/"
 CODES = {}
 
-headers={"Authorization":"Bearer "}
+headers={"Authorization":"Bearer ${{ secrets.Token }}"}
 print(requests.get(URL+"items/qrcodes").json()["data"])
 for item in requests.get(URL+"items/qrcodes",headers=headers).json()["data"]:
     CODES[item["Code"]] = item["id"]
