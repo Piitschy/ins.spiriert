@@ -15,7 +15,7 @@ print(CODES)
 
 @app.route("/")
 def root():
-    return redirect("https://ins.spiriert.com")
+    return redirect("https://ins.spiriert.de")
 
 @app.route("/<code>")
 def redirect_qr(code):
@@ -24,7 +24,7 @@ def redirect_qr(code):
         return redirect("https://google.com")
     response = requests.post(URL+"items/qr_scan/",json={"code": CODES[code]},headers=headers)
     print(response, URL+"items/qr_scan/")
-    return redirect("https://ins.spiriert.com")
+    return redirect("https://ins.spiriert.de")
 
 
 @app.route("/update")
