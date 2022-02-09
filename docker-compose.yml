@@ -84,11 +84,11 @@ services:
       - demo:/var/www/html
       
   flask:
-    build: ./flask
-    ports:
-        - "${PORTBASE}50:5000"
+    image: python:3.10-alpine
     volumes:
-        - ./flask:/code
+      - flask:/code
+    working_dir: /code
+    command: sh -c "pip install -r requirements.txt && python app.py"
 
 
 networks:
