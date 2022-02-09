@@ -1,12 +1,13 @@
 from flask import Flask,redirect
 import requests
+import os 
 
 app = Flask(__name__)
 
 URL = "https://api.spiriert.de/"
 CODES = {}
 
-headers={"Authorization":"Bearer ${{ secrets.TOKEN }}"}
+headers={"Authorization":"Bearer "+str(os.getenv("TOKEN")) }
 print(requests.get(URL+"items/qrcodes").json()["data"])
 for item in requests.get(URL+"items/qrcodes",headers=headers).json()["data"]:
     CODES[item["Code"]] = item["id"]
