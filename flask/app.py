@@ -24,7 +24,7 @@ def redirect_qr(code):
         return redirect("https://google.com")
     response = requests.post(URL+"items/qr_scan/",json={"code": CODES[code]},headers=headers)
     print(response, URL+"items/qr_scan/")
-    return redirect("https://google.com")
+    return redirect("https://ins.spiriert.com")
 
 
 @app.route("/update")
