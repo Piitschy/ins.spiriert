@@ -6,6 +6,8 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link href="css/insspiriert.webflow.css?v5" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
@@ -20,7 +22,7 @@
   <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
@@ -38,11 +40,11 @@
       </div>
       <div class="titlebgwrapper"><img src="images/Group-6.svg" loading="lazy" alt="" class="image-4"></div>
     </div>
-    <div v-for="item of data.linkboxes" :key="item">
-      <div class="link-boxes" :style="'left: calc(200px - '+item.position+'*40px);top: calc(35% + '+item.position+'*5%);'">
-        <a :href="item.url" :target="item.blank ? '_blank' : ''" class="link">
-          <img v-if="item.icon" :src="url+item.icon.url" loading="lazy" alt="">
-          {{ item.text }}
+    <div v-for="item of data.linkboxes.data" :key="item">
+      <div class="link-boxes" :style="'left: calc(200px - '+item.id+'*40px);top: calc(35% + '+item.id+'*5%);'">
+        <a :href="item.URL" :target="item.blank ? '_blank' : ''" class="link">
+          <span class="material-icons-outlined" style="margin-right:5px">{{item.icon}}</span>
+           {{ item.text }}
         </a>
       </div>
     </div>
@@ -53,13 +55,13 @@
     <div class="collection-list-wrapper w-dyn-list">
       <div role="list" class="w-dyn-items w-row">
         <div 
-          v-for="item of data.texts" 
+          v-for="item of data.texts.data" 
           :key="item" 
           role="listitem" 
           class="collection-item w-dyn-item w-col w-col-4"
           >
             <h2 class="heading-5">{{ item.headline }}</h2>
-            <div class="text-block-4">{{ item.text }}</div>
+            <div class="text-block-4" v-html="item.text"></div>
         </div>
       </div>
     </div>
@@ -96,10 +98,10 @@
   </div>
   -->
   <div class="spacer"></div>
-  <div v-for="item of data.sections" :key="item">
+  <div v-for="item of data.sections.data" :key="item">
     <section class="textfeld">
       <h1 class="heading-8">{{ item.headline }}</h1>
-      <p class="paragraph-2">{{ item.text }}</p>
+      <p class="paragraph-2" v-html="item.text"> </p>
       <a v-if="item.show_link" :href="item.url" target="_blank" class="link-3">{{ item.link_text }}</a>
     </section>
     <div class="spacer"></div>

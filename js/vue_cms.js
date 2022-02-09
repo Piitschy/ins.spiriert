@@ -2,7 +2,7 @@ import { createApp } from 'https://unpkg.com/petite-vue?module'
 
 createApp({
   // const
-  url:'https://cms.spiriert.de',
+  url:'https://api.spiriert.de/items/',
   routes: [
     'linkboxes',
     'texts',
