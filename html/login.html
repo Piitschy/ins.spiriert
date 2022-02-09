@@ -13,7 +13,7 @@
 <script type="module">
 import { Directus } from 'https://unpkg.com/@directus/sdk@latest/dist/sdk.esm.min.js';
 
-const directus = new Directus('https://api.spiriert.de/');
+const directus = new Directus('https://cms.spiriert.de/');
 
 directus.auth.refresh().then(()=>{
     Alpine.store('login').loggedIn = true;

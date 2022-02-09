@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-URL = "https://api.spiriert.de/"
+URL = "https://cms.spiriert.de/"
 CODES = {}
 
 headers={"Authorization":"Bearer "+str(os.getenv("TOKEN")) }
