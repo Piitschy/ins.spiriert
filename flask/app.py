@@ -1,14 +1,12 @@
 from flask import Flask,redirect
-#from redis import Redis
 import requests
 
 app = Flask(__name__)
-#redis = Redis(host='redis', port=6379)
 
 URL = "https://api.spiriert.de/"
 CODES = {}
 
-headers={"Authorization":"Bearer "}
+headers={"Authorization":"Bearer ${{ secrets.TOKEN }}"}
 print(requests.get(URL+"items/qrcodes").json()["data"])
 for item in requests.get(URL+"items/qrcodes",headers=headers).json()["data"]:
     CODES[item["Code"]] = item["id"]
@@ -16,8 +14,8 @@ for item in requests.get(URL+"items/qrcodes",headers=headers).json()["data"]:
 print(CODES)
 
 @app.route("/")
-def redirect_qr_():
-    return redirect("https://google.com")
+def root():
+    return redirect("https://ins.spiriert.de")
 
 @app.route("/<code>")
 def redirect_qr(code):
@@ -26,7 +24,7 @@ def redirect_qr(code):
         return redirect("https://google.com")
     response = requests.post(URL+"items/qr_scan/",json={"code": CODES[code]},headers=headers)
     print(response, URL+"items/qr_scan/")
-    return redirect("https://google.com")
+    return redirect("https://ins.spiriert.de")
 
 
 @app.route("/update")
@@ -39,6 +37,5 @@ def update():
 
 
 
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0",port=5000)

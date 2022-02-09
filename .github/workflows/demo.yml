@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-name: deploy on release
+name: deploy on main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,5 +20,16 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: ./html/
           REMOTE_DIR: ${{ secrets.DOCKER_VOL_PATH }}/${{ secrets.DOCKER_STACK }}_demo/_data/
+          METHOD: sftp
+          PORT: ${{ secrets.PORT }}
+        
+      - name: SFTP-Deploy flask
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./flask/
+          REMOTE_DIR: ${{ secrets.DOCKER_VOL_PATH }}/${{ secrets.DOCKER_STACK }}_flask/_data/
           METHOD: sftp
           PORT: ${{ secrets.PORT }}
