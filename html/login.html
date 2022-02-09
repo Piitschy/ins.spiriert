@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,400i,600,700">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Radial-Progress-Bar.css">
-    <link rel="stylesheet" href="assets/css/Login.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 <script type="module">
 import { Directus } from 'https://unpkg.com/@directus/sdk@latest/dist/sdk.esm.min.js';
 
@@ -35,20 +33,21 @@ globalThis.directusSDK = directus;
 </head>
 
 <body><i class="fa fa-user-o d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style="z-index:5500;font-size: 35px;border-radius: 149px;background: #9fc16b;width: 50px;height: 50px;color: rgb(255,255,255);" x-data="" x-on:click="toggleDialog()"></i>
-    <div x-data="" x-show="$store.login.loggedIn">
-        <div class="container flex-sm-column flex-md-column" x-data="count">
+    <div x-data="count" x-show="$store.login.loggedIn">
+        <div class="container flex-sm-column flex-md-column">
             <div class="row">
                 <div class="col-md-4 d-flex justify-content-center align-items-center order-sm-last order-md-first justify-content-xl-center align-items-xl-center" style="height: 240px;"><i class="fa fa-minus-square-o d-flex d-xl-flex justify-content-xl-center align-items-xl-center" style="font-size: 110px;" x-on:click="decrease()"></i></div>
                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center" style="height: 240px;" :style="{color: pending?'gray':'black'}">
                     <p class="text-center" style="margin-bottom: 0px;">Aktuelle Auslastung</p>
-                    <p class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><span style="font-size: 146px;margin-top: 0px;line-height: 97px;letter-spacing: -2px;" x-text="count" x-on:click="doRefresh()">20</span><span style="margin-bottom: 0px;margin-top: 61px;margin-right: 6px;margin-left: 1px;padding: 0;padding-bottom: 3px;font-size: 26px;" x-text="pending">Tische</span></p>
+                    <p class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><span style="font-size: 146px;margin-top: 0px;line-height: 97px;letter-spacing: -2px;" x-text="count" x-on:click="doRefresh()">20</span><span style="margin-bottom: 0px;margin-top: 61px;margin-right: 6px;margin-left: 1px;padding: 0;padding-bottom: 3px;font-size: 26px;">Tische</span></p>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center align-items-center order-sm-first order-md-last" style="height: 240px;" x-show="$store.login.loggedIn"><i class="fa fa-plus-square-o d-flex d-xl-flex justify-content-xl-center align-items-xl-center" style="font-size: 110px;" x-on:click="increase()"></i></div>
             </div>
         </div>
+        <div class="form-check d-flex justify-content-center"><input class="form-check-input" type="checkbox" id="formCheck-1" x-model="opend" x-bind:disabled="count>0"><label class="form-check-label" for="formCheck-1">Geöffnet</label></div>
     </div>
     <div style="height: 100vh; overflow:hidden; z-index:1000;">
-        <div class="d-flex justify-content-center justify-content-xl-center justify-content-xxl-center align-items-xxl-start" id="loginDialog" style="display: flex;position: absolute;left: 0;right: 0;margin: auto;max-width: 400px;top: 80px;" x-data="login"><i class="fa fa-user-o d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style="position: absolute;top: -70px;font-size: 88px;border-radius: 149px;background: #9fc16b;width: 150px;height: 150px;color: rgb(255,255,255);"></i>
+        <div class="d-flex justify-content-center justify-content-xl-center justify-content-xxl-center align-items-xxl-start loading" id="loginDialog" style="display: flex;position: absolute;left: 0;right: 0;margin: auto;max-width: 400px;top: 80px;" x-data="login"><i class="fa fa-user-o d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style="position: absolute;top: -70px;font-size: 88px;border-radius: 149px;background: #9fc16b;width: 150px;height: 150px;color: rgb(255,255,255);"></i>
             <div class="container" style="background: #171717;padding: 25px;width: 359px;border-radius: 26px;color: rgb(255,255,255);">
                 <div style="height: 70px;"></div>
                 <div class="col" x-show="!$store.login.loggedIn">
@@ -109,9 +108,7 @@ globalThis.directusSDK = directus;
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/1core.js"></script>
-    <script src="assets/js/counter.js"></script>
-    <script src="assets/js/Login.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>
