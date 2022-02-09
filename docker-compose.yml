@@ -87,7 +87,7 @@ services:
     image: python:3.10-alpine
     restart: always
     ports:
-      - '7450:80'
+      - '${PORTBASE}50:80'
     volumes:
       - flask:/code
     working_dir: /code
