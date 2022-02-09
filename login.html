@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,400i,600,700">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="assets/css/Animated-Radial-Progress-Bar.css">
+    <link rel="stylesheet" href="assets/css/Login.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 <script type="module">
 import { Directus } from 'https://unpkg.com/@directus/sdk@latest/dist/sdk.esm.min.js';
 
@@ -45,9 +47,71 @@ globalThis.directusSDK = directus;
             </div>
         </div>
     </div>
-    <div style="height: 100vh; overflow:hidden; z-index:1000;"></div>
+    <div style="height: 100vh; overflow:hidden; z-index:1000;">
+        <div class="d-flex justify-content-center justify-content-xl-center justify-content-xxl-center align-items-xxl-start" id="loginDialog" style="display: flex;position: absolute;left: 0;right: 0;margin: auto;max-width: 400px;top: 80px;" x-data="login"><i class="fa fa-user-o d-flex d-xxl-flex justify-content-center align-items-center justify-content-xxl-center align-items-xxl-center" style="position: absolute;top: -70px;font-size: 88px;border-radius: 149px;background: #9fc16b;width: 150px;height: 150px;color: rgb(255,255,255);"></i>
+            <div class="container" style="background: #171717;padding: 25px;width: 359px;border-radius: 26px;color: rgb(255,255,255);">
+                <div style="height: 70px;"></div>
+                <div class="col" x-show="!$store.login.loggedIn">
+                    <div class="row">
+                        <div class="col" style="margin: 7px;">
+                            <div class="input-group"><span class="text-center text-dark d-xxl-flex justify-content-xxl-center input-group-text" style="background: rgb(47,47,47);color: rgb(231,231,231);width: 5%;"><i class="fa fa-user" style="color: rgb(239,239,239);"></i></span><input class="form-control" type="text" placeholder="your@mail.de" x-model="email" :style="(fmail&amp;&amp;email==&quot;&quot;)?{borderBottom: '2px solid red'}:{}" :disabled="loading"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="margin: 7px;">
+                            <div class="input-group text-dark"><span class="text-dark d-xxl-flex justify-content-xxl-center input-group-text" style="background: rgb(47,47,47);color: rgb(231,231,231);width: 5%;"><i class="fa fa-lock" style="border-color: rgb(254,254,254);color: rgb(223,225,227);"></i></span><input class="form-control" type="password" placeholder="password" x-model="password" :style="(fpw&amp;&amp;password==&quot;&quot;)?{borderBottom: '2px solid red'}:{}" :disabled="loading"></div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col" style="margin-top: 25px;"><button class="btn btn-dark login-btn" type="button" style="box-shadow: 0px 0px 20px rgba(0,0,0,0.56), -10px -5px 20px 0px rgba(255,255,255,0.36);border-radius: 40px;width: 149.2656px;height: 48px;background: rgb(160,193,107);border-width: 0px;" x-on:click="if(email=== &quot;&quot;){fmail= true}else if(password === &quot;&quot;){fpw = true} else {login();}" x-show="!loading &amp;&amp; !$store.login.loggedIn">Login</button><svg x-show='loading' width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+    <circle cx="15" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15"
+                 begin="0s" dur="0.8s"
+                 values="15;9;15" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="1" to="1"
+                 begin="0s" dur="0.8s"
+                 values="1;.5;1" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+    <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+        <animate attributeName="r" from="9" to="9"
+                 begin="0s" dur="0.8s"
+                 values="9;15;9" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="0.5" to="0.5"
+                 begin="0s" dur="0.8s"
+                 values=".5;1;.5" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+    <circle cx="105" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15"
+                 begin="0s" dur="0.8s"
+                 values="15;9;15" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="1" to="1"
+                 begin="0s" dur="0.8s"
+                 values="1;.5;1" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+</svg></div>
+                    </div>
+                </div>
+                <div class="col" x-show="!loading &amp;&amp; $store.login.loggedIn">
+                    <div class="row">
+                        <div class="col" style="margin: 7px;" x-data=""><i class="fa fa-user" style="margin-right: 6px;"></i><span x-text="$store.login.user?$store.login.user.first_name + &quot; &quot;+$store.login.user.last_name: &quot;wait&quot;">Christian von der Heydt</span></div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col" style="margin-top: 25px;"><button class="btn btn-dark login-btn" type="button" style="box-shadow: 0px 0px 20px rgba(0,0,0,0.56), -10px -5px 20px 0px rgba(255,255,255,0.36);border-radius: 40px;width: 149.2656px;height: 48px;background: rgb(193,112,107);border-width: 0px;" x-on:click="logout()">logout</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
+    <script src="assets/js/1core.js"></script>
+    <script src="assets/js/counter.js"></script>
+    <script src="assets/js/Login.js"></script>
 </body>
 
 </html>
