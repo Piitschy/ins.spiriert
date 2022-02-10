@@ -58,8 +58,8 @@
       <div class="traffic" v-if="data.workload.data.open" style="padding: 17px;border-radius: 15px; box-shadow:2px 2px 12px rgba(77, 77, 77, 0.1); background: rgba(37, 37, 37, 0.3);backdrop-filter: blur(4px);">
       
         <div class="count"  > 
-          <span class="indicator" style="font-size: 50px;">{{("00"+(data.workload.data.count||0)).slice(("00"+(data.workload.data.count||0)).length-2) }}</span>
-          <span class="max" >/20</span> 
+          <span class="indicator" style="font-size: 50px;">{{("00"+(data.workload.data.count||0)).slice(("00"+(data.workload.data.count||0)).length-2)}}</span>
+          <span class="max" >/{{("00"+(data.workload.data.max||0)).slice(("00"+(data.workload.data.max||0)).length-2)}}</span> 
           <div class="icon material-icons-outlined" style="">group</div>
         </div>
         <div class="title">Tische Belegt</div>
