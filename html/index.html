@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-  <script src="js/vue_cms.js?v4" type="module"></script>
+  <script src="js/vue_petite.js?v4" type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Cairo:300,regular,600"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -26,7 +26,7 @@
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
-<body @vue:mounted="mounted">
+<body @vue:mounted="mounted" >
   <div class="header"><img src="images/Rectangle-5.png" loading="lazy" data-w-id="ccbd28bc-8c65-3d2e-7f9c-e5555771ab88" sizes="100vw" srcset="images/Rectangle-5-p-500.png 500w, images/Rectangle-5-p-800.png 800w, images/Rectangle-5-p-1080.png 1080w, images/Rectangle-5.png 1440w" alt="" class="image-5">
     <div class="icons">
       <div data-w-id="a121f2db-4e55-0955-1e07-970fde3fc06d" style="opacity:0" class="iconwrapper bottle"><img src="images/bottl.svg" loading="lazy" alt="" class="image-6"></div>
@@ -42,14 +42,15 @@
     </div>
     <div v-for="item of data.linkboxes.data" :key="item">
       <div class="link-boxes" :style="'left: calc(20px - '+item.id+'*0px);top: max(55% + '+item.id+'*5%, 55% + '+item.id+'*60px);'">
-        <a :href="item.URL" :target="item.blank ? '_blank' : ''" class="link">
+        <a :href="item.URL" :target="item.blank ? '_blank' : ''" class="link" >
           <span class="material-icons-outlined" style="margin-right:5px">{{item.icon}}</span>
            {{ item.text }}
+           
         </a>
       </div>
     </div>
     <div class="status" v-if="data.workload.data" v-cloak>
-      
+      <button @click="cal = true">CAL</button>
       <div class="state">
         jetzt
         <div class="stat-inner" v-if="data.workload.data.open" id="open">Geöffnet <div class="icon material-icons-outlined" style="margin-left:5px;font-size:30px;">check_circle</div>  </div>
@@ -57,7 +58,7 @@
       </div>
       <div class="traffic" v-if="data.workload.data.open" style="padding: 17px;border-radius: 15px; box-shadow:2px 2px 12px rgba(77, 77, 77, 0.1); background: rgba(37, 37, 37, 0.3);backdrop-filter: blur(4px);">
       
-        <div class="count"  > 
+        <div class="count"> 
           <span class="indicator" style="font-size: 50px;">{{("00"+(data.workload.data.count||0)).slice(("00"+(data.workload.data.count||0)).length-2)}}</span>
           <span class="max" >/{{("00"+(data.workload.data.max||0)).slice(("00"+(data.workload.data.max||0)).length-2)}}</span> 
           <div class="icon material-icons-outlined" style="">group</div>
@@ -84,10 +85,8 @@
     </div>
   </div>
   <div class="spacer"></div>
-  <section id="cal_section" class="cal_frame">
-    <div id="cal" class="cal">
-      
-    </div>
+  <section id="cal_section" v-if="cal" class="cal_frame" >
+    <div id="cal" class="cal"></div>
   </section>
   <div class="kontakt" center>
     <div class="form-block w-form">
