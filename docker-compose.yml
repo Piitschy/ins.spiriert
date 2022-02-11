@@ -51,22 +51,19 @@ services:
       
       EMAIL_FROM: '${EMAIL_FROM}'
       EMAIL_TRANSPORT: smtp
-      EMAIL_SMTP_HOST: mail
+      EMAIL_SMTP_HOST: '${EMAIL_SMTP_HOST}'
       EMAIL_SMTP_PORT: 587
+      EMAIL_SMTP_USER: '${EMAIL_FROM}'
+      EMAIL_SMTP_PASSWORD: '${EMAIL_SMTP_PASSWORD}'
+      EMAIL_SMTP_POOL: "false"
+      EMAIL_SMTP_SECURE: "false"
       
       REFRESH_TOKEN_COOKIE_SAME_SITE: '${REFRESH_TOKEN_COOKIE_SAME_SITE}'
       REFRESH_TOKEN_COOKIE_SECURE: '${REFRESH_TOKEN_COOKIE_SECURE}'
       # Make sure to set this in production
       # (see https://docs.directus.io/reference/environment-variables/#general)
       PUBLIC_URL: 'https://${PUBLIC_URL}'
-
-  mail:
-    image: bytemark/smtp
-    restart: always
-    networks:
-      - directus
-    environment:
-      RELAY_PORT: 587
+      
 
   lap:
     image: fauria/lap:latest
@@ -82,7 +79,7 @@ services:
       - '${PORTBASE}81:80'
     volumes:
       - demo:/var/www/html
-      
+
   flask:
     image: python:3.10-alpine
     restart: always
@@ -90,9 +87,10 @@ services:
       - '${PORTBASE}50:5000'
     volumes:
       - flask:/code
+    environment:
+      TOKEN: '${FLASK_TOKEN}'
     working_dir: /code
     command: sh -c "pip install -r requirements.txt && python app.py"
-
 
 networks:
   directus:
@@ -102,3 +100,4 @@ volumes:
   db:
   lap:
   demo:
+  flask:
