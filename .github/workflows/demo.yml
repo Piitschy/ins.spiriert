@@ -33,3 +33,8 @@ jobs:
           REMOTE_DIR: ${{ secrets.DOCKER_VOL_PATH }}/${{ secrets.DOCKER_STACK }}_flask/_data/
           METHOD: sftp
           PORT: ${{ secrets.PORT }}
+      
+      - name: Pull WebHook for portainer restart
+        uses: muinmomin/webhook-action@v1.0.0
+        with:
+          url: ${{ secrets.PORTAINER_PULL_HOOK }}
