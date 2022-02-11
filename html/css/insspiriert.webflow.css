@@ -570,10 +570,11 @@ strong {
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
   cursor: pointer;
+  -webkit-animation: opacity 0.3s ease;
 }
 
 .cal_frame {
-  -webkit-animation: pop 0.5s ease forwards;
+  -webkit-animation: scale 0.4s ease;
   position: absolute;
   z-index: 3;
   left: 5%;
@@ -707,7 +708,16 @@ strong {
   height: 800px;
 }
 
-@keyframes pop {
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
   0% {
     transform: scale(0);
   }
