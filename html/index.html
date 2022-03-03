@@ -116,10 +116,9 @@
   -->
   <div class="spacer"></div>
   <div v-for="item of data.sections.data" :key="item">
-    <section class="textfeld">
+    <section v-if="item.published" class="textfeld">
       <h1 class="heading-8">{{ item.headline }}</h1>
-      <p class="paragraph-2" v-html="item.text"> </p>
-      <a v-if="item.show_link" :href="item.url" target="_blank" class="link-3">{{ item.link_text }}</a>
+      <p class="paragraph-2" v-html="item.text"></p>
     </section>
     <div class="spacer"></div>
   </div>
