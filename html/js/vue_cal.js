@@ -9,15 +9,24 @@ var cal = new Vue({
               flat
             >
               <v-btn
+                icon
+                color="white"
+                class="mr-4"
+                color="grey darken-2"
+                @click="history.back();check_cal()"
+              >
+                <v-icon>
+                  mdi-close
+                </v-icon>
+              </v-btn>
+              <v-btn
                 v-if="type != 'month'"
                 outlined
                 class="mr-4"
                 color="grey darken-2"
                 @click="type = 'month'"
                 >
-                <v-icon>
-                  mdi-calendar-range
-                </v-icon>
+                Monat
               </v-btn>
               <v-btn
           v-if="type != 'week'"
