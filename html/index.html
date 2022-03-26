@@ -126,12 +126,13 @@
   -->
 
   <div v-for="item of data.sections.data" :key="item">
+    <div class="spacer"></div>
     <section :id="'section-'+item.id" v-if="item.published" class="textfeld">
       <h1 class="heading-8">{{ item.headline }}</h1>
       <p class="paragraph-2" v-html="item.text"></p>
     </section>
-    <div class="spacer"></div>
   </div>
+  <div class="spacer"></div>
   <div class="kontakt" center>
     <div class="form-block w-form">
       <h3 class="heading-6">Kontakt</h3>
