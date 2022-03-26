@@ -4,6 +4,7 @@ createApp({
   // const
   url:'https://cms.spiriert.de/items/',
   routes: [
+    'headline',
     'linkboxes',
     'texts',
     'sections',

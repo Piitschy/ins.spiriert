@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="css/insspiriert.webflow.css?v5" rel="stylesheet" type="text/css">
+  <link href="css/custom.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -27,7 +28,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body @vue:mounted="mounted">
-  <div class="header"><img src="images/Rectangle-5.png" loading="lazy" data-w-id="ccbd28bc-8c65-3d2e-7f9c-e5555771ab88" sizes="100vw" srcset="images/Rectangle-5-p-500.png 500w, images/Rectangle-5-p-800.png 800w, images/Rectangle-5-p-1080.png 1080w, images/Rectangle-5.png 1440w" alt="" class="image-5">
+  <div class="header">
+    <img src="images/Rectangle-5.png" loading="lazy" data-w-id="ccbd28bc-8c65-3d2e-7f9c-e5555771ab88" sizes="100vw" srcset="images/Rectangle-5-p-500.png 500w, images/Rectangle-5-p-800.png 800w, images/Rectangle-5-p-1080.png 1080w, images/Rectangle-5.png 1440w" alt="" class="image-5">
     <div class="icons">
       <div data-w-id="a121f2db-4e55-0955-1e07-970fde3fc06d" style="opacity:0" class="iconwrapper bottle"><img src="images/bottl.svg" loading="lazy" alt="" class="image-6"></div>
       <div data-w-id="2d67ab11-dc0f-95f4-211e-f369b5192deb" style="opacity:0" class="iconwrapper wifi"><img src="images/Vector.svg" loading="lazy" alt="" class="image-6"></div>
@@ -48,6 +50,14 @@
         </a>
       </div>
     </div>
+    <div v-if="data.headline.data.status == 'published' && window.innerWidth >= 870" class="headerbanner">
+      <div class="glass" :href="'#section-'+data.headline.data.section" style="width: 50%; max-width: 600px; text-align: center;">
+        <a style="text-decoration:none; color: inherit;" :href="'#section-'+data.headline.data.section">
+          <h2>{{data.headline.data.headline}}</h2>
+          <h3>{{data.headline.data.subheadline}}</h3>
+        </a>
+      </div>
+    </div>
     <div class="status" v-if="data.workload.data" v-cloak>
       
       <div class="state">
@@ -55,7 +65,7 @@
         <div class="stat-inner" v-if="data.workload.data.open" id="open">Geöffnet <div class="icon material-icons-outlined" style="margin-left:5px;font-size:30px;">check_circle</div>  </div>
         <div class="stat-inner" v-if="!data.workload.data.open" id="close">Geschlossen <div class="icon material-icons-outlined" style="margin-left:5px;font-size:30px;">highlight_off</div>  </div>
       </div>
-      <div class="traffic" v-if="data.workload.data.open" style="padding: 17px;border-radius: 15px; box-shadow:2px 2px 12px rgba(77, 77, 77, 0.1); background: rgba(37, 37, 37, 0.3);backdrop-filter: blur(4px);">
+      <div class="traffic glass" v-if="data.workload.data.open" >
       
         <div class="count"  > 
           <span class="indicator" style="font-size: 50px;">{{("00"+(data.workload.data.count||0)).slice(("00"+(data.workload.data.count||0)).length-2)}}</span>
@@ -67,6 +77,16 @@
     </div>
     <div class="start"></div>
     <div class="triangle-wrapper"><img src="images/Intersect.svg" loading="lazy" height="" data-w-id="c34c45f0-927b-94a5-5576-c9222a696a8b" alt="" class="image-3"></div>
+  </div>
+  <div class="textfeld" v-if="data.headline.data.status == 'published' && window.innerWidth < 870">
+    <div class="collection-list-wrapper w-dyn-list">
+      <div class="w-dyn-items w-row">
+        <a style="text-decoration:none; color: inherit;" :href="'#section-'+data.headline.data.section">
+          <h2 class="heading-5">{{data.headline.data.headline}}</h2>
+          <h3 class="text-block-4">{{data.headline.data.subheadline}}</h3>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="textfeld">
     <div class="collection-list-wrapper w-dyn-list">
@@ -86,18 +106,8 @@
   <div class="spacer"></div>
   <section id="cal_section" class="cal_frame">
     <div id="cal" class="cal">
-      
     </div>
   </section>
-  <div class="kontakt" center>
-    <div class="form-block w-form">
-      <h3 class="heading-6">Kontakt</h3>
-      <form action="mailto:ins@spiriert.de" id="email-form" name="email-form" data-name="Email Form" method="get">
-        <label class="field-label-2">Bei Fragen kannst du uns gern eine Mail senden.</label>
-        <input type="submit" name="submit" value="Mail schreiben" class="submit-button w-button"/>
-      </form>
-    </div>
-  </div>
   <!--
   <div class="kontakt">
     <div class="form-block w-form">
@@ -114,15 +124,23 @@
     </div>
   </div>
   -->
-  <div class="spacer"></div>
+
   <div v-for="item of data.sections.data" :key="item">
-    <section v-if="item.published" class="textfeld">
+    <section :id="'section-'+item.id" v-if="item.published" class="textfeld">
       <h1 class="heading-8">{{ item.headline }}</h1>
       <p class="paragraph-2" v-html="item.text"></p>
     </section>
     <div class="spacer"></div>
   </div>
-
+  <div class="kontakt" center>
+    <div class="form-block w-form">
+      <h3 class="heading-6">Kontakt</h3>
+      <form action="mailto:ins@spiriert.de" id="email-form" name="email-form" data-name="Email Form" method="get">
+        <label class="field-label-2">Bei Fragen kannst du uns gern eine Mail senden.</label>
+        <input type="submit" name="submit" value="Mail schreiben" class="submit-button w-button"/>
+      </form>
+    </div>
+  </div>
   <!-- <div class="html-embed-2 w-embed w-iframe"><iframe src="https://spiriert.skedda.com/booking?embedded=true" style="width: 100%; height: 800px;"></iframe></div> -->
 
   <div class="spacer">
