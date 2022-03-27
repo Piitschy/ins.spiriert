@@ -12,13 +12,16 @@ createApp({
   ],
 
   // data
-  data: {},
+  data: {
+    loaded: false,
+  },
 
   // methods
   load(route) {
     fetch(this.url+'/'+route)
       .then(response => response.json())
       .then(data => this.data[route] = data)
+    this.loaded = true;
   },
 
   mounted() {
@@ -26,6 +29,6 @@ createApp({
       this.data[r] = []
       this.load(r)
     }
-    setInterval(()=>{this.load('workload')},1000);
+    setTimeout(() => this.loaded = true, 5000);
   }
 }).mount()
